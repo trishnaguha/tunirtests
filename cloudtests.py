@@ -49,8 +49,16 @@ class Testtmpmount(unittest.TestCase):
         out = out.decode('utf-8')
         self.assertEqual(out.strip(), '1777')
 
+class TestJournalWritten(unittest.TestCase):
 
+    def test_journal_written(self):
+        """Test to check if journal gets written to disk"""
 
+        out, err, eid = system('ls -l /proc/$(pgrep journal)/fd/ | grep journal')
+        out = out.split('/')[5]
+        out = out.decode('utf-8')
+        self.assertEqual(out, 'system.journal')
+        self.assertEqual(out, 'user-1000.journal')
 
 
 if __name__ == '__main__':
