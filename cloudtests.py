@@ -76,7 +76,7 @@ class TestJournalWritten(unittest.TestCase):
         pid = out[8:-1]
 
         # Find UID
-        out, err, eid = system("id -u")
+        out, err, eid = system("sudo id -u")
         uid = out.decode('utf-8').strip('\n')
 
         # Journal log
